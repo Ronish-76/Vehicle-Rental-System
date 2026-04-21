@@ -7,7 +7,6 @@ export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [profileImage, setProfileImage] = useState(null);
   const navigate = useNavigate();
   const { signup, user } = useAuth();
 
@@ -28,9 +27,6 @@ export default function SignupPage() {
     formData.append("name", name);
     formData.append("email", email);
     formData.append("password", password);
-    if (profileImage) {
-      formData.append("profileImage", profileImage);
-    }
 
     try {
       await signup(formData);
@@ -135,24 +131,6 @@ export default function SignupPage() {
         }
 
         .sp-input::placeholder { color: #C3D4E9; }
-
-        .sp-file-input-label {
-          display: block;
-          padding: 10px 16px;
-          background: #F6F7F9;
-          border: 1.5px dashed #C3D4E9;
-          border-radius: 10px;
-          cursor: pointer;
-          text-align: center;
-          font-size: 0.8rem;
-          color: #596780;
-          transition: border-color 0.2s, background 0.2s;
-        }
-        .sp-file-input-label:hover {
-          border-color: #3563E9;
-          background: #fff;
-          color: #3563E9;
-        }
 
         .sp-btn-signup {
           width: 100%;
@@ -372,20 +350,6 @@ export default function SignupPage() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                 />
-              </div>
-
-              <div className="sp-input-wrap">
-                <label className="sp-label" htmlFor="profileImage">Profile Image (Optional)</label>
-                <label className="sp-file-input-label">
-                  {profileImage ? profileImage.name : "Click to upload image"}
-                  <input
-                    type="file"
-                    id="profileImage"
-                    accept="image/*"
-                    style={{ display: 'none' }}
-                    onChange={(e) => setProfileImage(e.target.files[0])}
-                  />
-                </label>
               </div>
 
               <button type="submit" className="sp-btn-signup">Create Account</button>
