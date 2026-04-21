@@ -6,7 +6,6 @@ const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     let uploadPath = 'uploads/';
     
-    // Choose destination based on fieldname or other criteria
     if (file.fieldname === 'profileImage') {
       uploadPath += 'users/';
     } else if (file.fieldname === 'carImage') {
@@ -16,7 +15,7 @@ const storage = multer.diskStorage({
     } else {
       uploadPath += 'others/';
     }
-    cb(null, uploadPath);
+    cb(null, path.join(__dirname, '..', uploadPath));
   },
   filename: function (req, file, cb) {
     cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
@@ -32,7 +31,7 @@ const checkFileType = (file, cb) => {
   if (mimetype && extname) {
     return cb(null, true);
   } else {
-    cb('Error: Images Only!');
+    cb(new Error('Error: Images Only!'));
   }
 };
 

@@ -27,10 +27,14 @@ const Navbar = () => {
           </div>
           <input
             type="text"
+            onClick={!user ? () => navigate('/login') : undefined}
             placeholder="Search something here"
             className="w-full bg-white border border-gray-200 rounded-full py-3.5 pl-12 pr-12 text-sm text-gray-700 outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all shadow-sm"
           />
-          <div className="absolute right-4 text-gray-500 cursor-pointer hover:text-gray-700 transition-colors">
+          <div 
+            onClick={!user ? () => navigate('/login') : undefined}
+            className="absolute right-4 text-gray-500 cursor-pointer hover:text-gray-700 transition-colors"
+          >
             <SlidersHorizontal size={20} />
           </div>
         </div>

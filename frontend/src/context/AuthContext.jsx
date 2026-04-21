@@ -26,11 +26,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signup = async (formData) => {
-    const { data } = await axios.post('http://localhost:5000/api/auth/register', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    const { data } = await axios.post('http://localhost:5000/api/auth/register', formData);
     setUser(data);
     localStorage.setItem('userInfo', JSON.stringify(data));
     return data;
